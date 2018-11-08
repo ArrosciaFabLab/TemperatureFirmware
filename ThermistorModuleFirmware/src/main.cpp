@@ -36,9 +36,7 @@ void loop()
     // Leggo il valore del sensore in unità Celsius
     dTemp = ThermistorModuleGetTemp( INPUT_TEMP_PIN );
 
-	Serial.println( "Il valore della temperatura letto dal modulo del termistore è di " );
-    Serial.println( int( dTemp ) );
-    Serial.println( "° C" );
+	Serial.println( "Il valore della temperatura letto dal modulo del termistore è di " + String( int( dTemp ) ) + "° C" );
 
 	delay( 1000 );
 }
@@ -46,5 +44,5 @@ void loop()
 void DebugSetup()
 {
     Serial.begin( 9600 );
-    Serial.println( "Ho inizializzato il debug su monitor seriale");
+    Serial.println( "--- Ho inizializzato il debug su monitor seriale");
 }
