@@ -17,12 +17,12 @@
 /*
  *    Funzione che imposta i parametri di inizializzazione del modulo di temperatura
  */
-void ThermistorModuleSetup( int nGate, int nMode );
+void ThermistorModuleSetup( int nTempSensorPin, int nTempUnit );
 
 /*
  *    Funzione che ferma restituisce il valore di temperatura letto dal termistore
  *	  nell'unità di misura attualmente impostata
  */
-double ThermistorModuleGetTemp( int nSensorPin );
+double ThermistorModuleGetTemp( int nTempSensorPin );
 
 #endif

@@ -6,7 +6,10 @@ Schetch di test sul modulo di temperatura con il termistore
 */
 
 // PIN a cui è collegato il il modulo di temperatura con il termistore (analogico)
-#define INPUT_TEMP_PIN             5
+#define INPUT_TEMP_PIN             A0
+
+double dTemp =  0;
+double dLastTemp = 0;
 
 // La dichiarazione delle funzioni non è necessaria nel file .ino
 
@@ -31,14 +34,25 @@ void loop()
 {
     Serial.println( "--- Inizio il loop principale della scheda Arduino" );
 
-	double dTemp =  0;
-
     // Leggo il valore del sensore in unità Celsius
     dTemp = ThermistorModuleGetTemp( INPUT_TEMP_PIN );
 
-	Serial.println( "Il valore della temperatura letto dal modulo con il termistore è di " + String( int( dTemp ) ) + "° C" );
+    if ( dTemp == dLastTemp )
+    {
+	    Serial.println( "Il valore della temperatura letto dal modulo non è cambiato" );
+    }
+    else if ( dTemp > dLastTemp )
+    {
+        Serial.println( "Il valore della temperatura letto dal modulo è aumentato: " + (String)dTemp + "° C" );
+    }
+    else if ( dTemp < dLastTemp )
+    {
+        Serial.println( "Il valore della temperatura letto dal modulo è diminuito: " + (String)dTemp + "° C" );
+    }
 
-	delay( 1000 );
+    dLastTemp = dTemp;
+
+	delay( 5000 );
 }
 
 void DebugSetup()
